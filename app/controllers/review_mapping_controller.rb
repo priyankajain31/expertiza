@@ -609,14 +609,7 @@ class ReviewMappingController < ApplicationController
 
   #this function assigns good reviewer score if review grade is greater than a particular threshold
   def assign_good_reviewer_badge(participant_id,review_grade)
-    print participant_id
-    print "---------"
-    print review_grade
     participant=Participant.find_by(id: participant_id)
-    puts("\n\n\n$$$$$$$")
-    print participant.user_id # for finding the student_id
-    print participant.parent_id
-
     if(!AssignmentBadge.where(:badge_id => 1 , :assignment_id => participant.parent_id ).nil?)
       threshold = AssignmentBadge.find_by(:badge_id => 1 , :assignment_id => participant.parent_id ).threshold
       if(!threshold.nil?)
